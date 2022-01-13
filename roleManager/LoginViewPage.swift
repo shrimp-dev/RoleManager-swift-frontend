@@ -31,66 +31,66 @@ struct LoginViewPage: View {
                 LinearGradient(gradient: Gradient(colors: [.blue,.white]), startPoint: .topLeading, endPoint: .bottomTrailing)
             )
     }
-
-
-//MARK: Logo
-    var logo:some View{
-        Image("Logo")
-            .resizable()
-            .aspectRatio(contentMode: ContentMode.fit)
-            .frame(width: 74.0, height: 74.0)
-            .padding(EdgeInsets.init(top: 128, leading: 24, bottom: 36, trailing: 24))
-            
-    }
     
-//MARK: Texto principal
-var mainText: some View{
-    Text("Faça o login com a sua conta")
-        .font(.title2)
-        .bold()
-}
-    
-
-//MARK: Inpults
-    var inpultUserName: some View{
-        TextField("usuario", text: $userName)
-                   .padding()
-                   .background(Color.white)
-                   .cornerRadius(4.0)
-                   .padding(EdgeInsets(top: 0, leading: 10, bottom: 15, trailing: 10))
-    }
-    
-    var inpultPassword: some View{
-        TextField("senha", text: $passWord)
-                   .padding()
-                   .background(Color.white)
-                   .cornerRadius(4.0)
-                   .padding(EdgeInsets(top: 0, leading: 10, bottom: 15, trailing: 10))
-    }
-    
-    var buttonLogin: some View{
-        Button {
-            print("clicado")
-        } label: {
-            Text("Login").frame(width: screnWidth/1.5, height: 50, alignment: .center)
-        }.padding()
-            .background(.white)
-            .cornerRadius(8)
-            .offset(x: 0, y: screnWidth/2.5)
-            .foregroundColor(.black)
-
-    }
-    
-    var lbInvite: some View{
-        Button{
-            print("invite")
-        } label: {
-            Text("Já foi convidado?")
-        }.offset(x: 0, y: screnWidth/2.5)
-
+//TODO: Criar uma page_laout para esses inpults
+    //MARK: Logo
+        var logo:some View{
+            Image("Logo")
+                .resizable()
+                .aspectRatio(contentMode: ContentMode.fit)
+                .frame(width: 128, height: 128)
+                .padding(EdgeInsets.init(top: 184, leading: 24, bottom: 36, trailing: 24))
+                
+        }
+        
+    //MARK: Texto principal
+    var mainText: some View{
+        Text("Faça o login com a sua conta")
+            .font(.title2)
+            .bold()
     }
         
-    
+
+    //MARK: Inpults
+        var inpultUserName: some View{
+            TextField("usuario", text: $userName)
+                       .padding()
+                       .background(Color.white)
+                       .cornerRadius(4.0)
+                       .padding(EdgeInsets(top: 0, leading: 10, bottom: 15, trailing: 10))
+        }
+        
+        var inpultPassword: some View{
+            TextField("senha", text: $passWord)
+                       .padding()
+                       .background(Color.white)
+                       .cornerRadius(4.0)
+                       .padding(EdgeInsets(top: 0, leading: 10, bottom: 15, trailing: 10))
+        }
+        
+        var buttonLogin: some View{
+            Button {
+                print("O seu login é: \(userName) e a sua senha é: \(passWord)")
+            } label: {
+                Text("Login").frame(width: screnWidth/1.5, height: 30, alignment: .center)
+            }.padding()
+                .background(.white)
+                .cornerRadius(8)
+                .offset(x: 0, y: screnWidth/2.5)
+                .foregroundColor(.black)
+
+        }
+        
+        var lbInvite: some View{
+            Button{
+                print("invite")
+            } label: {
+                Text("Já foi convidado?")
+            }.offset(x: 0, y: screnWidth/2.5)
+
+        }
+
+
 struct LoginViewPage_Previews: PreviewProvider {
     static var previews: some View {
         LoginViewPage()
