@@ -32,7 +32,7 @@ final class UrlShared{
         case .amazon:
             return "http://3.13.112.254:3000"
         case .dominio:
-            return "https://drinkgame.shrimpdev.com"
+            return "https://api.drinkgame.shrimpdev.com/"
         }
     
     }
