@@ -12,6 +12,7 @@ struct LoginViewPage: View {
     
     let screnWidth = UIScreen.main.bounds.size.width
     
+    
     let screnHeigth = UIScreen.main.bounds.size.height
     
     @State private var userName: String = ""
@@ -28,7 +29,7 @@ struct LoginViewPage: View {
             
         }.position(x:screnWidth/2, y: screnHeigth*0.25)
             .background(
-                LinearGradient(gradient: Gradient(colors: [.blue,.white]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                LinearGradient(gradient: Gradient(colors: [.blue,.gray]), startPoint: .topLeading, endPoint: .bottomTrailing)
             )
     }
     
@@ -69,8 +70,22 @@ struct LoginViewPage: View {
         }
         
         var buttonLogin: some View{
+            
             Button {
-                print("O seu login é: \(userName) e a sua senha é: \(passWord)")
+                @State var presentAlert = false
+                let isValidUsername = RegexValidations.isValidEmail(email:userName)
+                //TODO: Fazer o regex da senha funcionar
+                let isValidPass = RegexValidations.isValidPassword(pass: passWord)
+                
+                if(isValidUsername != true){
+                print("fail")
+                //TODO: Criar um alerta para quando der falha.
+                }else{
+                print("passou")
+                }
+                
+                
+                
             } label: {
                 Text("Login").frame(width: screnWidth/1.5, height: 30, alignment: .center)
             }.padding()
@@ -87,6 +102,7 @@ struct LoginViewPage: View {
             } label: {
                 Text("Já foi convidado?")
             }.offset(x: 0, y: screnWidth/2.5)
+                .foregroundColor(.white)
 
         }
 
