@@ -78,10 +78,9 @@ struct LoginViewPage: View {
                 let isValidPass = RegexValidations.isValidPassword(pass: passWord)
                 
                 if(isValidUsername != true){
-                print("fail")
-                //TODO: Criar um alerta para quando der falha.
+                    print("Fail")
                 }else{
-                print("passou")
+                print("pass")
                 }
                 
                 
