@@ -21,52 +21,77 @@ struct LoginViewPage: View {
     var body: some View {
         VStack{
             logo
-            mainText.padding(Edge.Set.bottom,64)
-            inpultUserName
-            inpultPassword
+            mainText
+                .padding(20)
+                .frame(width: 411, height: 54)
+                .foregroundColor(Color(UIColor(red: 0.027, green: 0, blue: 0.302, alpha: 1)))
+                .offset(x: 0, y: 180)
+            VStack{
+                inpultUserName
+                inpultPassword
+
+            }.offset(x: 0, y: 200)
             buttonLogin
             lbInvite
             
-        }.position(x:screnWidth/2, y: screnHeigth*0.25)
-            .background(
-                LinearGradient(gradient: Gradient(colors: [.blue,.gray]), startPoint: .topLeading, endPoint: .bottomTrailing)
-            )
+        }.position(x:screnWidth/2, y: screnHeigth*0.32)
+            
     }
     
 //TODO: Criar uma page_laout para esses inpults
     //MARK: Logo
         var logo:some View{
-            Image("Logo")
+            Image(systemName: "square")
                 .resizable()
                 .aspectRatio(contentMode: ContentMode.fit)
-                .frame(width: 128, height: 128)
-                .padding(EdgeInsets.init(top: 184, leading: 24, bottom: 36, trailing: 24))
+                .frame(width: 96, height: 96)
+                .padding(EdgeInsets.init(top: 60, leading: 24, bottom: -180, trailing: 24))
+                
                 
         }
         
     //MARK: Texto principal
     var mainText: some View{
-        Text("Faça o login com a sua conta")
-            .font(.title2)
-            .bold()
+        Text("Entre com a sua conta")
+            .font(Font.custom("Poppins-Bold", size: 36))
     }
         
 
     //MARK: Inpults
         var inpultUserName: some View{
-            TextField("usuario", text: $userName)
-                       .padding()
-                       .background(Color.white)
-                       .cornerRadius(4.0)
-                       .padding(EdgeInsets(top: 0, leading: 10, bottom: 15, trailing: 10))
+            VStack{
+                Text("Email")
+                    .foregroundColor(Color(UIColor(red: 0.027, green: 0, blue: 0.302, alpha: 1)))
+                    .frame(width: screnWidth/8, height:24)
+                    .offset(x: -screnWidth/2.65, y: 10)
+                    
+                TextField("Digite seu usuario", text: $userName)
+                           .padding()
+                           .padding(EdgeInsets(top: 10, leading: 10, bottom: 15, trailing: 10))
+                           .overlay(
+                           RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.black,lineWidth: 1)
+                            .padding()
+                           )
+            }
         }
         
         var inpultPassword: some View{
-            TextField("senha", text: $passWord)
-                       .padding()
-                       .background(Color.white)
-                       .cornerRadius(4.0)
-                       .padding(EdgeInsets(top: 0, leading: 10, bottom: 15, trailing: 10))
+            VStack{
+                Text("Senha")
+                    .foregroundColor(Color(UIColor(red: 0.027, green: 0, blue: 0.302, alpha: 1)))
+                    .frame(width: screnWidth/8, height:24)
+                    .offset(x: -screnWidth/2.65, y: 10)
+                    
+                TextField("Digite sua senha", text: $userName)
+                           .padding()
+                           .padding(EdgeInsets(top: 10, leading: 10, bottom: 15, trailing: 10))
+                           .overlay(
+                           RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.black,lineWidth: 1)
+                            .padding()
+                           )
+            }
         }
         
         var buttonLogin: some View{
@@ -78,31 +103,41 @@ struct LoginViewPage: View {
                 let isValidPass = RegexValidations.isValidPassword(pass: passWord)
                 
                 if(isValidUsername != true){
-                    print("Fail")
+                //TODO: Fazer o popUp funcionar.
                 }else{
                 print("pass")
                 }
                 
                 
-                
             } label: {
-                Text("Login").frame(width: screnWidth/1.5, height: 30, alignment: .center)
+                Image("Login")
+                    .resizable()
+                    .frame(width: 98, height: 98)
+                    .offset(x: 0, y: -40)
             }.padding()
                 .background(.white)
                 .cornerRadius(8)
-                .offset(x: 0, y: screnWidth/2.5)
+                .offset(x: 0, y: screnWidth/1.9)
                 .foregroundColor(.black)
 
         }
         
         var lbInvite: some View{
-            Button{
-                print("invite")
-            } label: {
-                Text("Já foi convidado?")
-            }.offset(x: 0, y: screnWidth/2.5)
-                .foregroundColor(.white)
-
+            VStack{
+                Text("Recebeu um convite e ainda não se cadastrou?")
+                    .font(Font.custom("Poppins-Regular", size: 18))
+                    .foregroundColor(Color(UIColor(red: 0.027, green: 0, blue: 0.302, alpha: 1)))
+                    .offset(x: 0, y: screnHeigth/4)
+                Button{
+                    
+                }label: {
+                    Text("Clique aqui")
+                        .foregroundColor(Color(UIColor(red: 0.365, green: 0.373, blue: 0.937, alpha: 1)))
+                        .font(Font.custom("Poppins-Bold", size: 18))
+                        .offset(x: 0, y: screnHeigth/3.6)
+                        
+                }
+            }
         }
 
 
