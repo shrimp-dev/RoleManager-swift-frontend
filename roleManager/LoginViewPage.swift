@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginViewPage: View {
     
-    
+    @State var isWrong = false
     let screnWidth = UIScreen.main.bounds.size.width
     
     
@@ -60,55 +60,111 @@ struct LoginViewPage: View {
     //MARK: Inpults
         var inpultUserName: some View{
             VStack{
-                Text("Email")
-                    .foregroundColor(Color(UIColor(red: 0.027, green: 0, blue: 0.302, alpha: 1)))
-                    .frame(width: screnWidth/8, height:24)
-                    .offset(x: -screnWidth/2.65, y: 10)
+               
+                
+                if(isWrong == false){
                     
-                TextField("Digite seu usuario", text: $userName)
-                           .padding()
-                           .padding(EdgeInsets(top: 10, leading: 10, bottom: 15, trailing: 10))
-                           .overlay(
-                           RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.black,lineWidth: 1)
-                            .padding()
-                           )
+                    Text("Email")
+                        .foregroundColor(Color(UIColor(red: 0.027, green: 0, blue: 0.302, alpha: 1)))
+                        .frame(width: screnWidth/8, height:24)
+                        .offset(x: -screnWidth/2.65, y: 10)
+                        
+                    TextField("Digite seu usuario", text: $userName)
+                               .padding()
+                               .padding(EdgeInsets(top: 10, leading: 10, bottom: 15, trailing: 10))
+                               .overlay(
+                               RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.black,lineWidth: 1)
+                                .padding())
+                    
+                }else{
+                    Text("Email")
+                        .foregroundColor(Color.red)
+                        .frame(width: screnWidth/8, height:24)
+                        .offset(x: -screnWidth/2.65, y: 10)
+                    
+                    TextField("Digite seu usuario", text: $userName)
+                               .padding()
+                               .padding(EdgeInsets(top: 10, leading: 10, bottom: 15, trailing: 10))
+                               .overlay(
+                               RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.red,lineWidth: 1)
+                                .padding())
+                    Text("Login ou senha incorreta")
+                        .foregroundColor(.red)
+                        .font(Font.custom("Poppins-Regular", size: 16))
+                        .lineLimit(2)
+                        .frame(width: screnWidth/2, height:24)
+                        .offset(x: -screnWidth/4.3, y: -10)
+                }
             }
         }
         
         var inpultPassword: some View{
             VStack{
-                Text("Senha")
-                    .foregroundColor(Color(UIColor(red: 0.027, green: 0, blue: 0.302, alpha: 1)))
-                    .frame(width: screnWidth/8, height:24)
-                    .offset(x: -screnWidth/2.65, y: 10)
+                
+                
+                if(isWrong == false){
                     
-                TextField("Digite sua senha", text: $userName)
-                           .padding()
-                           .padding(EdgeInsets(top: 10, leading: 10, bottom: 15, trailing: 10))
-                           .overlay(
-                           RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.black,lineWidth: 1)
-                            .padding()
-                           )
+                    Text("Senha")
+                        .foregroundColor(Color(UIColor(red: 0.027, green: 0, blue: 0.302, alpha: 1)))
+                        .frame(width: screnWidth/8, height:24)
+                        .offset(x: -screnWidth/2.65, y: 10)
+                    
+                    SecureField("Digite sua senha", text: $passWord)
+                               .disableAutocorrection(true)
+                               
+                               .padding()
+                               .padding(EdgeInsets(top: 10, leading: 10, bottom: 15, trailing: 10))
+                               .overlay(
+                               RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.black,lineWidth: 1)
+                                .padding()
+                               )
+                    
+                }else{
+                    Text("Senha")
+                        .foregroundColor(.red)
+                        .frame(width: screnWidth/8, height:24)
+                        .offset(x: -screnWidth/2.65, y: 10)
+                    
+                    SecureField("Digite sua senha", text: $passWord)
+                               .disableAutocorrection(true)
+                               
+                               .padding()
+                               .padding(EdgeInsets(top: 10, leading: 10, bottom: 15, trailing: 10))
+                               .overlay(
+                               RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.red,lineWidth: 1)
+                                .padding()
+                               )
+                    Text("Login ou senha incorreta")
+                        .foregroundColor(.red)
+                        .font(Font.custom("Poppins-Regular", size: 16))
+                        .lineLimit(2)
+                        .frame(width: screnWidth/2, height:24)
+                        .offset(x: -screnWidth/4.3, y: -10)
+                }
+                
+                
             }
         }
         
         var buttonLogin: some View{
             
             Button {
-                @State var presentAlert = false
+                
                 let isValidUsername = RegexValidations.isValidEmail(email:userName)
                 //TODO: Fazer o regex da senha funcionar
                 let isValidPass = RegexValidations.isValidPassword(pass: passWord)
                 
                 if(isValidUsername != true){
-                //TODO: Fazer o popUp funcionar.
+                isWrong = true
                 }else{
                 print("pass")
                 }
                 
-                
+            //TODO: Depois fazer a seta ficar vermelha tb
             } label: {
                 Image("Login")
                     .resizable()
